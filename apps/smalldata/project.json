@@ -1,0 +1,74 @@
+{
+  "name": "smalldata",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "smalldata",
+  "sourceRoot": "apps/smalldata/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/smalldata",
+        "index": "apps/smalldata/src/index.html",
+        "browser": "apps/smalldata/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/smalldata/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/smalldata/src/favicon.ico",
+          "apps/smalldata/src/assets"
+        ],
+        "styles": ["apps/smalldata/src/styles.scss"],
+        "scripts": [],
+        "server": "apps/smalldata/src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "apps/smalldata/server.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "smalldata:build:production"
+        },
+        "development": {
+          "buildTarget": "smalldata:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "smalldata:build"
+      }
+    }
+  }
+}
