@@ -38,7 +38,7 @@ export const authRouter = router({
       // TODO: Do some real token generation
 
       return {
-        token: 'valid token',
+        token: `valid token|${user.id}`,
         user,
       };
     }),

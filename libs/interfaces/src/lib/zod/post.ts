@@ -4,9 +4,11 @@ import { CompleteUser, RelatedUserZod } from "./index"
 export const PostZod = z.object({
   id: z.number().int(),
   title: z.string(),
-  content: z.string(),
+  content: z.string().nullish(),
   published: z.boolean(),
   authorId: z.number().int(),
+  createdAt: z.date().nullish(),
+  updatedAt: z.date().nullish(),
 })
 
 export interface CompletePost extends z.infer<typeof PostZod> {
