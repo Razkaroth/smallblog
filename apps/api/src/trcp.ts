@@ -1,5 +1,9 @@
 import type { CreateHTTPContextOptions } from '@trpc/server/adapters/standalone';
 import { initTRPC } from '@trpc/server';
+import { PrismaClient } from '@prisma/client';
+// Create prisma client
+
+const prisma = new PrismaClient();
 
 export async function createContext(options: CreateHTTPContextOptions) {
   const { req, res } = options;
@@ -11,6 +15,7 @@ export async function createContext(options: CreateHTTPContextOptions) {
     req,
     res,
     token,
+    prisma,
   };
 }
 

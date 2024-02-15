@@ -3,7 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../libs/interfaces/src/lib/client/"
+  output   = "client"
 }
 
 generator zod {
