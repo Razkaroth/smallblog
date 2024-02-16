@@ -6,6 +6,7 @@ export const UserZod = z.object({
   email: z.string(),
   name: z.string().nullish(),
   password: z.string(),
+  isAdmin: z.boolean(),
 })
 
 export interface CompleteUser extends z.infer<typeof UserZod> {

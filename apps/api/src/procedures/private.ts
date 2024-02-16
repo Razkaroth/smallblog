@@ -31,7 +31,15 @@ export const privateProcedure = publicProcedure.use(async ({ ctx, next }) => {
   }
   ctx.user = user;
 
+  return next();
+});
 
-
+export const adminProcedure = privateProcedure.use(async ({ ctx, next }) => {
+  if (!ctx.user.isAdmin) {
+    throw new TRPCError({
+      code: 'UNAUTHORIZED',
+      message: 'User is not an admin',
+    });
+  }
   return next();
 });

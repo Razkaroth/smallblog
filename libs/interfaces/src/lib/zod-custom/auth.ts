@@ -14,3 +14,8 @@ export const AuthRegisterOutputZod = z.object({
   message: z.string().optional(),
   user: UserOutputZod.optional(),
 });
+
+export const SetAdminInputZod = z.object({
+  id: z.number(),
+  isAdmin: z.boolean(),
+});

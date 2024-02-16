@@ -5,7 +5,9 @@ import {
   AuthInputZod,
   AuthOutputZod,
   AuthRegisterOutputZod,
+  UserOutputZod,
 } from '@smalldata/interfaces';
+import { privateProcedure } from '../procedures/private';
 
 export const authRouter = router({
   login: publicProcedure
@@ -67,4 +69,26 @@ export const authRouter = router({
         };
       }
     }),
+  getCurrentUser: privateProcedure.output(UserOutputZod).query(({ ctx }) => {
+    return ctx.user;
+  }),
+  init: publicProcedure.mutation(async ({ ctx }) => {
+    // check if there are any users
+    // if not, create a default user
+    // else, throw an error
+    const prisma = ctx.prisma;
+    if ((await prisma.user.count()) === 0) {
+      const user = await prisma.user.create({
+        data: {
+          email: 'user@example.com',
+          password: 'password',
+        },
+      });
+      return user;
+    }
+    throw new TRPCError({
+      code: 'PRECONDITION_FAILED',
+      message: 'Already initialized',
+    });
+  }),
 });
