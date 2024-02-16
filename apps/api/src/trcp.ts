@@ -1,7 +1,6 @@
 import type { CreateHTTPContextOptions } from '@trpc/server/adapters/standalone';
 import { initTRPC } from '@trpc/server';
 import { PrismaClient, User } from '@prisma/client';
-// Create prisma client
 
 const prisma = new PrismaClient();
 
