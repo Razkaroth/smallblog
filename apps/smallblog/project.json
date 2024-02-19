@@ -1,31 +1,31 @@
 {
-  "name": "smalldata",
+  "name": "smallblog",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "smalldata",
-  "sourceRoot": "apps/smalldata/src",
+  "prefix": "smallblog",
+  "sourceRoot": "apps/smallblog/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/smalldata",
-        "index": "apps/smalldata/src/index.html",
-        "browser": "apps/smalldata/src/main.ts",
+        "outputPath": "dist/apps/smallblog",
+        "index": "apps/smallblog/src/index.html",
+        "browser": "apps/smallblog/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/smalldata/tsconfig.app.json",
+        "tsConfig": "apps/smallblog/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
-          "apps/smalldata/src/favicon.ico",
-          "apps/smalldata/src/assets"
+          "apps/smallblog/src/favicon.ico",
+          "apps/smallblog/src/assets"
         ],
-        "styles": ["apps/smalldata/src/styles.scss"],
+        "styles": ["apps/smallblog/src/styles.scss"],
         "scripts": [],
-        "server": "apps/smalldata/src/main.server.ts",
+        "server": "apps/smallblog/src/main.server.ts",
         "prerender": true,
         "ssr": {
-          "entry": "apps/smalldata/server.ts"
+          "entry": "apps/smallblog/server.ts"
         }
       },
       "configurations": {
@@ -56,10 +56,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "smalldata:build:production"
+          "buildTarget": "smallblog:build:production"
         },
         "development": {
-          "buildTarget": "smalldata:build:development"
+          "buildTarget": "smallblog:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -67,7 +67,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "smalldata:build"
+        "buildTarget": "smallblog:build"
       }
     }
   }

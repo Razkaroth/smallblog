@@ -6,7 +6,7 @@ import {
   PostCreationZod,
   PostInputZod,
   PostZod,
-} from '@smalldata/interfaces';
+} from '@smallblog/interfaces';
 import { TRPCError } from '@trpc/server';
 import { privateProcedure } from '../procedures/private';
 

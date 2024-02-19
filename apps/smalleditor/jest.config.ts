@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'smalldata',
+  displayName: 'smalleditor',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/apps/smalldata',
+  coverageDirectory: '../../coverage/apps/smalleditor',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

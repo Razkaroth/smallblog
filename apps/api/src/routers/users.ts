@@ -1,4 +1,4 @@
-import { SetAdminInputZod, UserOutputZod } from '@smalldata/interfaces';
+import { SetAdminInputZod, UserOutputZod } from '@smallblog/interfaces';
 import { publicProcedure } from '../procedures/public';
 import { router } from '../trcp';
 import { z } from 'zod';

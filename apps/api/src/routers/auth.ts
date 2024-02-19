@@ -6,7 +6,7 @@ import {
   AuthOutputZod,
   AuthRegisterOutputZod,
   UserOutputZod,
-} from '@smalldata/interfaces';
+} from '@smallblog/interfaces';
 import { privateProcedure } from '../procedures/private';
 
 export const authRouter = router({

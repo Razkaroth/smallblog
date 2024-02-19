@@ -1,10 +1,15 @@
 {
-  "name": "@smalldata/source",
+  "name": "@smallblog/source",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "web": "nx run smalldata:serve:development",
-    "api": "nx run api:serve:development"
+    "blog": "nx run smallblog:serve:development",
+    "editor": "nx run smalleditor:serve:development",
+    "api": "nx run api:serve:development",
+    "blog:build": "nx run smallblog:build:production",
+    "editor:build": "nx run smalleditor:build:production",
+    "api:build": "nx run api:build:production",
+    "build": "nx run-many --target=build --all"
   },
   "private": true,
   "dependencies": {
