@@ -2,7 +2,7 @@
   "name": "smalleditor",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "smallblog",
+  "prefix": "smalleditor",
   "sourceRoot": "apps/smalleditor/src",
   "tags": [],
   "targets": {

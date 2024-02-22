@@ -57,6 +57,9 @@
       "linter": "eslint",
       "style": "scss",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:component": {
+      "style": "css"
     }
   },
   "nxCloudAccessToken": "NzE0NTgzMzAtZTA5NC00ZjYxLTljNDktYTZkZjQ0M2U2NTg1fHJlYWQtd3JpdGU="
