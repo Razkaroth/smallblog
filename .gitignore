@@ -7,7 +7,8 @@ tmp
 
 # dependencies
 node_modules
-
+prisma/migrations
+prisma/dev.db
 # IDEs and editors
 /.idea
 .project

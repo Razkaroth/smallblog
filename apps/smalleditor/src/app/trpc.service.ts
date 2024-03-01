@@ -32,7 +32,11 @@ export class TrpcService {
     this.users = this.client.users;
     this.posts = this.client.posts;
     this.auth = this.client.auth;
-    this.client.auth.init.mutate()
+    // try {
+    //   this.client.auth.init.mutate();
+    // } catch (e) {
+    //   console.warn(e);
+    // }
   }
 
   async login(email: string, password: string) {

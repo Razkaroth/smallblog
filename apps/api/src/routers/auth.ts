@@ -78,13 +78,20 @@ export const authRouter = router({
     // else, throw an error
     const prisma = ctx.prisma;
     if ((await prisma.user.count()) === 0) {
-      const user = await prisma.user.create({
+      await prisma.user.create({
         data: {
           email: 'user@example.com',
           password: 'password',
         },
       });
-      return user;
+      await prisma.user.create({
+        data: {
+          email: 'admin@example.com',
+          password: 'password',
+          isAdmin: true,
+        },
+      });
+      return { success: true };
     }
     throw new TRPCError({
       code: 'PRECONDITION_FAILED',
