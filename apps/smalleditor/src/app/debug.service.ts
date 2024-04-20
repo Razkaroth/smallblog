@@ -29,6 +29,10 @@ export class DebugService {
     if (!this.active) {
       return;
     }
+    // check if folder already exists
+    if (this.folders[name]) {
+      return this.folders[name];
+    }
     this.folders[name] = this.pane.addFolder({
       title: name,
       expanded: expanded,

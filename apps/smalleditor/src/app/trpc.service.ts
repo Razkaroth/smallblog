@@ -12,6 +12,7 @@ import { DebugService } from './debug.service';
 export class TrpcService {
   client!: ReturnType<typeof createTRPCProxyClient<AppRouter>>;
   user?: UserOutput;
+  debug?: FolderApi;
 
   users!: typeof this.client.users;
   posts!: typeof this.client.posts;
@@ -24,11 +25,19 @@ export class TrpcService {
 
   debbugger() {
     if (this.debugService.active) {
-      const debug = this.debugService.createFolder('TRPC');
-      if (!debug) {
+      this.debug = this.debugService.createFolder('TRPC');
+      if (!this.debug) {
         return;
       }
-      const initBtn = debug.addButton({
+      // if (this.user) {
+      //   debug.addBinding(this, 'user', {
+      //     label: 'User',
+      //     readonly: true,
+      //     multiline: true,
+      //     rows: 5,
+      //   });
+      // }
+      const initBtn = this.debug.addButton({
         title: 'Init',
         label: 'Init',
       });
@@ -67,5 +76,20 @@ export class TrpcService {
     });
     this.user = result.user;
     this.createClient(result.token);
+    if (this.debug) {
+      console.log('addBinding');
+      this.debug.addBinding(result.user, 'id', {
+        label: 'User ID',
+        readonly: true,
+      });
+      this.debug.addBinding(result.user, 'email', {
+        label: 'User Email',
+        readonly: true,
+      });
+      this.debug.addBinding(result.user, 'isAdmin', {
+        label: 'User isAdmin',
+        readonly: true,
+      });
+    }
   }
 }
