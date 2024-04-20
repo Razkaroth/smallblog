@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import type { AppRouter } from '../../../api/src/main';
 import type { UserOutput } from '@smallblog/interfaces';
+import type { FolderApi, Pane } from 'tweakpane';
+import { DebugService } from './debug.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,11 +17,29 @@ export class TrpcService {
   posts!: typeof this.client.posts;
   auth!: typeof this.client.auth;
 
-  constructor() {
+  constructor(private debugService: DebugService) {
     this.createClient();
+    this.debbugger();
   }
 
-  createClient(token: string = '') {
+  debbugger() {
+    if (this.debugService.active) {
+      const debug = this.debugService.createFolder('TRPC');
+      if (!debug) {
+        return;
+      }
+      const initBtn = debug.addButton({
+        title: 'Init',
+        label: 'Init',
+      });
+      initBtn.on('click', () => {
+        this.client.auth.init.mutate();
+      });
+
+    }
+  }
+
+  createClient(token = '') {
     this.client = createTRPCProxyClient<AppRouter>({
       links: [
         httpBatchLink({

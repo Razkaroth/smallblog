@@ -18,5 +18,6 @@ export class AppComponent {
 
   async init() {
     this.title = await this.trpc.client.greeting.query();
+    console.log('title', this.title);
   }
 }
