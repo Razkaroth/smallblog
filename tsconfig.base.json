@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ngx-tiptap-notion": ["libs/ngx-tiptap-notion/src/index.ts"],
       "@smallblog/interfaces": ["libs/interfaces/src/index.ts"]
     }
   },
