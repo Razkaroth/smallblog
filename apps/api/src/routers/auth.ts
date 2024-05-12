@@ -29,7 +29,7 @@ export const authRouter = router({
           message: 'No user found with that email',
         });
       }
-
+      // TODO: Do some real password hashing
       if (user.password !== input.password) {
         throw new TRPCError({
           code: 'UNAUTHORIZED',

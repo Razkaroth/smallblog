@@ -29,14 +29,7 @@ export class TrpcService {
       if (!this.debug) {
         return;
       }
-      // if (this.user) {
-      //   debug.addBinding(this, 'user', {
-      //     label: 'User',
-      //     readonly: true,
-      //     multiline: true,
-      //     rows: 5,
-      //   });
-      // }
+
       const initBtn = this.debug.addButton({
         title: 'Init',
         label: 'Init',
@@ -49,6 +42,9 @@ export class TrpcService {
   }
 
   createClient(token = '') {
+    if (!token) {
+      token = localStorage.getItem('token') || '';
+    }
     this.client = createTRPCProxyClient<AppRouter>({
       links: [
         httpBatchLink({
@@ -62,11 +58,11 @@ export class TrpcService {
     this.users = this.client.users;
     this.posts = this.client.posts;
     this.auth = this.client.auth;
-    // try {
-    //   this.client.auth.init.mutate();
-    // } catch (e) {
-    //   console.warn(e);
-    // }
+    this.getCurrentUser();
+  }
+
+  async getCurrentUser() {
+    this.user = await this.auth.getCurrentUser.query();
   }
 
   async login(email: string, password: string) {
@@ -76,6 +72,7 @@ export class TrpcService {
     });
     this.user = result.user;
     this.createClient(result.token);
+    localStorage.setItem('token', result.token);
     if (this.debug) {
       console.log('addBinding');
       this.debug.addBinding(result.user, 'id', {
@@ -92,4 +89,5 @@ export class TrpcService {
       });
     }
   }
+
 }

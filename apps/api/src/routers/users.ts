@@ -11,6 +11,7 @@ export const usersRouter = router({
       const prisma = ctx.prisma;
       return prisma.user.findMany();
     }),
+
   getUser: publicProcedure
     .input(z.number())
     .output(UserOutputZod)

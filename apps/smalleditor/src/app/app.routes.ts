@@ -19,10 +19,11 @@ export const appRoutes: Route[] = [
     component: MainComponent,
     canActivate: [
       //AuthGuard
-      () => {
+      async () => {
         // get the trpc service and router
         const trpc = inject(TrpcService);
         const router = inject(Router);
+        await trpc.getCurrentUser()
         // if user is not logged in, redirect to login
         if (!trpc.user) {
           router.navigate(['/login']);

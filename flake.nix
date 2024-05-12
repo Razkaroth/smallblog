@@ -1,5 +1,5 @@
 {
-  description = "A prisma test project";
+  description = "Allows for correct dependency resolving of Prisma execs in a NixOS environment. Use bunx or npx prisma to run Prisma commands.";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/master";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
@@ -8,6 +8,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       devShell = pkgs.mkShell {
+        name = "prisma-shell";
         nativeBuildInputs = [ pkgs.bashInteractive ];
         buildInputs = with pkgs; [
           nodePackages.prisma
